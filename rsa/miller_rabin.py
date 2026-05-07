@@ -1,4 +1,4 @@
-import random
+import secrets
 
 def miller_rabin(n, k=40):
     if n < 2:
@@ -17,7 +17,7 @@ def miller_rabin(n, k=40):
         r += 1
 
     for _ in range(k):
-        a = random.randrange(2, n - 2)
+        a = secrets.randbelow(n - 4) + 2
         x = pow(a, d, n)
 
         if x == 1 or x == n - 1:
