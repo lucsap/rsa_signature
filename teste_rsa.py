@@ -1,11 +1,14 @@
-import sys
 from rsa.rsa import gerar_chaves, rsa_encrypt, rsa_decrypt
 
-print("=== Teste (1024 bits) ===")
-bits = int(input("Digite o numero de bits: "))
+print("=== Teste RSA Base (sem OAEP) ===")
+bits = int(input("Digite o numero de bits para p e q: "))
 pub, priv = gerar_chaves(bits)
+e, n = pub
+d, _ = priv
 
-mensagem = int(input("Digite um numero: "))
+print(f"Chave publica gerada: e={e}, n={n.bit_length()} bits")
+
+mensagem = int(input("Digite um numero inteiro para cifrar: "))
 cifrado = rsa_encrypt(mensagem, pub)
 decifrado = rsa_decrypt(cifrado, priv)
 
